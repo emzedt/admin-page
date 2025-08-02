@@ -1,9 +1,3 @@
-Tentu, ini adalah file `README.md` yang bagus dan jelas untuk proyek Anda.
-
-Salin dan tempel konten di bawah ini ke dalam file `README.md` di folder proyek Anda.
-
------
-
 # Admin Page - Sistem Manajemen Pembelian
 
 Ini adalah aplikasi web sederhana yang dibangun dengan **Node.js**, **Express**, dan **EJS** untuk mengelola data produk, stok, dan riwayat pembelian. Aplikasi ini menggunakan database SQL untuk menyimpan data.
