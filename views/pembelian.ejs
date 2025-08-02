@@ -1,0 +1,133 @@
+<div class="flex min-h-screen bg-gray-100">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-blue-800 text-white flex flex-col">
+    <div
+      class="h-16 flex items-center justify-center font-bold text-xl border-b border-blue-700"
+    >
+      Admin Pembelian
+    </div>
+    <nav class="flex-1 px-4 py-6">
+      <ul class="space-y-2">
+        <li>
+          <a
+            href="/"
+            class="block px-4 py-2 rounded hover:bg-blue-700 transition"
+            >Dashboard</a
+          >
+        </li>
+        <li>
+          <a href="/pembelian" class="block px-4 py-2 rounded bg-blue-700"
+            >Pembelian</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-8">
+    <div class="flex items-center justify-between mb-8">
+      <h1 class="text-2xl font-bold text-gray-800">Daftar Pembelian</h1>
+      <form action="/pembelian/add" method="POST" class="flex gap-2">
+        <label
+          for="produk_id"
+          class="block text-sm font-medium text-gray-700 mb-1"
+          >Pilih Produk</label
+        >
+        <select
+          name="produk_id"
+          id="produk_id"
+          class="w-full border rounded px-3 py-2 bg-white"
+          required
+        >
+          <% produk.forEach(p => { %>
+          <option value="<%= p.id %>"><%= p.nama %></option>
+          <% }) %>
+        </select>
+        <input
+          type="number"
+          name="jumlah"
+          placeholder="Jumlah"
+          class="border rounded px-2 py-1"
+          required
+        />
+        <button
+          type="submit"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded"
+        >
+          Tambah
+        </button>
+      </form>
+    </div>
+    <div class="bg-white rounded-lg shadow overflow-x-auto">
+      <table class="min-w-full">
+        <thead>
+          <tr class="bg-blue-50">
+            <th
+              class="py-3 px-4 text-left text-xs font-semibold text-blue-800 uppercase"
+            >
+              ID
+            </th>
+            <th
+              class="py-3 px-4 text-left text-xs font-semibold text-blue-800 uppercase"
+            >
+              Produk
+            </th>
+            <th
+              class="py-3 px-4 text-left text-xs font-semibold text-blue-800 uppercase"
+            >
+              Jumlah
+            </th>
+            <th
+              class="py-3 px-4 text-left text-xs font-semibold text-blue-800 uppercase"
+            >
+              Status
+            </th>
+            <th
+              class="py-3 px-4 text-left text-xs font-semibold text-blue-800 uppercase"
+            >
+              Aksi
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% pembelian.forEach(p => { %>
+          <tr class="border-b hover:bg-blue-50">
+            <td class="py-2 px-4"><%= p.id %></td>
+            <td class="py-2 px-4"><%= p.nama %></td>
+            <td class="py-2 px-4"><%= p.jumlah %></td>
+            <td class="py-2 px-4">
+              <span
+                class="px-2 py-1 rounded-full text-xs font-semibold <%= p.status === 'CANCELLED' ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700' %>"
+              >
+                <%= p.status %>
+              </span>
+            </td>
+            <td class="py-2 px-4">
+              <% if (p.status !== 'CANCELLED') { %>
+              <form
+                action="/pembelian/cancel/<%= p.id %>"
+                method="POST"
+                class="inline"
+              >
+                <button
+                  type="submit"
+                  class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs"
+                >
+                  Batalkan
+                </button>
+              </form>
+              <% } else { %>
+              <span class="text-gray-400 text-xs">Dibatalkan</span>
+              <% } %>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <div class="p-4 border-t border-blue-700 text-sm text-center">
+    &copy; 2025 Admin Pembelian
+  </div>
+</div>
