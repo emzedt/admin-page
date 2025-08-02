@@ -12,7 +12,7 @@ Ini adalah aplikasi web sederhana yang dibangun dengan **Node.js**, **Express**,
 
   * **Dashboard**: Menampilkan daftar produk yang tersedia dan form untuk input pembelian baru.
   * **Manajemen Pembelian**: Menampilkan seluruh riwayat pembelian, menambahkan data pembelian baru, dan membatalkan pembelian.
-  * **Manajemen Stok**: Stok produk akan otomatis berkurang saat pembelian ditambahkan dan akan kembali saat pembelian dibatalkan.
+  * **Manajemen Stock**: Stock produk akan otomatis berkurang saat pembelian ditambahkan dan akan kembali saat pembelian dibatalkan.
 
 -----
 
@@ -56,7 +56,7 @@ npm install
 
 1.  Jalankan server database Anda (misalnya, nyalakan Apache dan MySQL dari XAMPP Control Panel).
 2.  Buka **phpMyAdmin** (biasanya di `http://localhost/phpmyadmin`).
-3.  Buat database baru dengan nama `admin_pembelian`.
+3.  Buat database baru dengan nama `pembelian_db`.
 4.  Pilih database tersebut, lalu buka tab **SQL**.
 5.  Jalankan query berikut untuk membuat semua tabel yang dibutuhkan:
 
@@ -85,14 +85,14 @@ CREATE TABLE Pembelian (
     FOREIGN KEY (produk_id) REFERENCES Produk(id)
 );
 
--- Isi data awal untuk produk dan stok
+-- Isi data awal untuk produk dan stock
 INSERT INTO Produk (nama, harga) VALUES
 ('Produk A', 10000), ('Produk B', 15000), ('Produk C', 20000),
 ('Produk D', 25000), ('Produk E', 30000), ('Produk F', 35000),
 ('Produk G', 40000), ('Produk H', 45000), ('Produk I', 50000),
 ('Produk J', 55000);
 
-INSERT INTO Stok (produk_id, jumlah_stok) VALUES
+INSERT INTO Stock (produk_id, jumlah) VALUES
 (1, 100), (2, 100), (3, 100), (4, 100), (5, 100),
 (6, 100), (7, 100), (8, 100), (9, 100), (10, 100);
 ```
